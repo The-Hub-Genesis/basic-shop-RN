@@ -6,7 +6,10 @@ import Colors from "../../constants/Colors";
 const ProductItem = (props) => {
   return (
     <View style={styles.product}>
-      <Image style={styles.image} source={{ uri: props.image }} />
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={{ uri: props.image }} />
+      </View>
+
       <View style={styles.details}>
         <Text style={styles.title}>{props.title}</Text>
         <Text style={styles.price}>${props.price.toFixed(2)}</Text>
@@ -38,16 +41,28 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "white",
     height: 300,
-    margin: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 20,
+    marginRight: 0,
+    width: "50%",
+  },
+  imageContainer: {
+    width: "100%",
+    height: "60%",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomEndRadius: 10,
+    overflow: "hidden",
   },
   image: {
     width: "100%",
-    height: "60%",
+    height: "100%",
   },
   details: {
     alignItems: "center",
     height: "15%",
-    padding: 10,
+    padding: 5,
   },
   title: {
     fontSize: 18,
@@ -58,11 +73,12 @@ const styles = StyleSheet.create({
     color: "#888",
   },
   actions: {
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
     height: "25%",
     paddingHorizontal: 20,
+    paddingVertical: 2
   },
 });
 
