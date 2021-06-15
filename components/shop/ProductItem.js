@@ -92,10 +92,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     marginVertical: 4,
+    fontFamily: "gilroyextrabold",
   },
   price: {
     fontSize: 14,
     color: "#888",
+    fontFamily: "gilroylight",
   },
   actions: {
     flexDirection: "column",
