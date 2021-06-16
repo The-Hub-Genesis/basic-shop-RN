@@ -1,5 +1,5 @@
-import CartItem from "../../models/cart-item";
 import { ADD_TO_CART } from "../actions/cart";
+import CartItem from "../../models/cart-item";
 
 const initialState = {
   items: {},
@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
       let updatedOrNewCartItem;
 
       if (state.items[addedProduct.id]) {
-        // already have item in the cart
+        // already have the item in the cart
         updatedOrNewCartItem = new CartItem(
           state.items[addedProduct.id].quantity + 1,
           prodPrice,
@@ -24,14 +24,13 @@ export default (state = initialState, action) => {
           state.items[addedProduct.id].sum + prodPrice
         );
       } else {
-        // add brand new item
         updatedOrNewCartItem = new CartItem(1, prodPrice, prodTitle, prodPrice);
-        return {
-          ...state,
-          items: { ...state.items, [addedProduct.id]: updatedOrNewCartItem },
-          totalAmount: state.totalAmount + prodPrice,
-        };
       }
+      return {
+        ...state,
+        items: { ...state.items, [addedProduct.id]: updatedOrNewCartItem },
+        totalAmount: state.totalAmount + prodPrice,
+      };
   }
   return state;
 };
