@@ -18,7 +18,7 @@ const ProductItem = (props) => {
   if (Platform.OS === "android" && Platform.Version >= 21) {
     TouchableCmp = TouchableNativeFeedback;
   }
-  
+
   return (
     <View style={styles.product}>
       <TouchableCmp onPress={props.onViewDetail} useForeground>
@@ -35,15 +35,15 @@ const ProductItem = (props) => {
 
             <View style={styles.actions}>
               <Button
-                color={Colors.secondary}
+                color={Colors.primary}
                 title="View Details"
                 onPress={props.onViewDetail}
-              ></Button>
+              />
               <Button
                 color={Colors.primary}
-                title="Add to Cart"
-                onPress={props.OnAddToCart}
-              ></Button>
+                title="To Cart"
+                onPress={props.onAddToCart}
+              />
             </View>
           </View>
         </View>
