@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, Text, StyleSheet, Platform } from "react-native";
+import { FlatList, StyleSheet, Platform } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
@@ -10,7 +10,7 @@ import * as cartActions from "../../store/actions/cart";
 const ProductsOverviewScreen = (props) => {
   const products = useSelector((state) => state.products.availableProducts);
   const dispatch = useDispatch();
-  
+
   return (
     <FlatList
       style={styles.container}
@@ -41,6 +41,17 @@ const ProductsOverviewScreen = (props) => {
 ProductsOverviewScreen.navigationOptions = (navData) => {
   return {
     headerTitle: "All Products",
+    headerLeft: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
@@ -59,7 +70,6 @@ const styles = StyleSheet.create({
   // container: {
   //   flexDirection: "row",
   //   alignContent: "stretch",
-    
   // },
   // productItems: {
   //   width: "40%",
