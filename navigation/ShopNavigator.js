@@ -16,10 +16,10 @@ const defaultNavOptions = {
     backgroundColor: Platform.OS === "android" ? Colors.primary : "",
   },
   headerTitleStyle: {
-    fontFamily: "open-sans-bold",
+    fontFamily: "gilroyextrabold",
   },
   headerBackTitleStyle: {
-    fontFamily: "open-sans",
+    fontFamily: "gilroyextrabold",
   },
   headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
 };
