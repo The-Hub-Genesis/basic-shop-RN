@@ -18,6 +18,7 @@ const CartScreen = (props) => {
         productPrice: state.cart.items[key].productPrice,
         quantity: state.cart.items[key].quantity,
         sum: state.cart.items[key].sum,
+        productImage: state.cart.items[key].productImage,
       });
     }
     return tranformedCartItems.sort((a, b) =>
@@ -29,6 +30,22 @@ const CartScreen = (props) => {
 
   return (
     <View style={styles.screen}>
+      <FlatList
+        data={cartItems}
+        keyExtractor={(item) => item.productId}
+        renderItem={(itemData) => (
+          <CartItem
+            quantity={itemData.item.quantity}
+            title={itemData.item.productTitle}
+            amount={itemData.item.sum}
+            image={itemData.item.productImage}
+            deletable
+            onRemove={() => {
+              dispatch(cartActions.removeFromCart(itemData.item.productId));
+            }}
+          />
+        )}
+      />
       <View style={styles.summary}>
         <Text style={styles.summaryText}>
           Total: <Text style={styles.amount}>${cartTotalAmount.toFixed()}</Text>
@@ -42,26 +59,12 @@ const CartScreen = (props) => {
           }}
         />
       </View>
-      <FlatList
-        data={cartItems}
-        keyExtractor={(item) => item.productId}
-        renderItem={(itemData) => (
-          <CartItem
-            quantity={itemData.item.quantity}
-            title={itemData.item.productTitle}
-            amount={itemData.item.sum}
-            onRemove={() => {
-              dispatch(cartActions.removeFromCart(itemData.item.productId));
-            }}
-          />
-        )}
-      />
     </View>
   );
 };
 
 CartScreen.navigationOptions = {
-  headerTitle: 'Your Cart'
+  headerTitle: "Your Cart",
 };
 
 const styles = StyleSheet.create({
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 20,
+    marginTop: 20,
     padding: 10,
     shadowColor: "black",
     shadowOpacity: 0.26,
